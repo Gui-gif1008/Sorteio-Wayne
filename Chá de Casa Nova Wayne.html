@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio de Presentes</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            text-align: center;
+            margin-top: 120px;
+            background-color: rgb(158, 187, 248);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #0004ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .exhausted {
+            color: red;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chá de Casa Nova da Wayne</h1>
+    <p>Clique no botão abaixo para sortear o item que você deverá levar.</p>
+    <button id="sortear">Sortear Item</button>
+    <div class="result" id="resultado"></div>
+    <div id="fimSorteio" class="exhausted" style="display: none;">
+        Todos os itens foram sorteados!
+    </div>
+
+    <script>
+        // Lista inicial de itens de cozinha
+        let itensDeCozinha = [
+            "Conjunto de Talheres",
+            "Espátula, colher de pau e concha",
+            "Tábuas de Corte",
+            "Ralador",
+            "Pratos",
+            "Copos",
+            "Potes de Plástico",
+            "Potes de Plástico",
+            "Potes de Plástico",
+            "Jarra para água / suco",
+            "Panos de prato",
+            "Panos de prato",
+            "Toalha de rosto",
+            "Toalha de rosto"
+        ];
+
+        document.getElementById('sortear').addEventListener('click', () => {
+            if (itensDeCozinha.length === 0) {
+                // Todos os itens foram sorteados
+                document.getElementById('fimSorteio').style.display = 'block';
+                return;
+            }
+
+            // Sortear um item
+            const indiceSorteado = Math.floor(Math.random() * itensDeCozinha.length);
+            const itemSorteado = itensDeCozinha[indiceSorteado];
+
+            // Exibir o item sorteado
+            document.getElementById('resultado').innerText = `Seu item sorteado foi: ${itemSorteado}`;
+
+            // Remover o item da lista para que não seja sorteado novamente
+            itensDeCozinha.splice(indiceSorteado, 1);
+        });
+    </script>
+</body>
+</html>
